@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Backend testing</title>
+  </head>
+  <body>
+    <h1>Backend testing for project</h1>
+    <h3>Print information from json-server database</h3>
+    <div id="showDB"></div>
+    <script>
+    console.log("app.js is loaded");
+
+    // Verbose Console logs.
+    let verbose = true;
+
+    // Declare variables for DOM elements
+    const showDB = document.getElementById("showDB");
+
+    // Fetch data from local json db store to variable
+    let payload = "";
+
+    fetch('../api/users')
+      .then(response => response.json())
+      .then(json => {
+        (verbose) ? console.log(json): "";
+        payload = json;
+      })
+      // display db info to page.
+      .then(() => {
+        showDB.innerHTML = payload;
+      });
+    </script>
+  </body>
+</html>

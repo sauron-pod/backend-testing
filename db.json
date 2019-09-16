@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "demo",
+      "location": "San Antonio, Texas",
+      "favoriteColor": "red"
+    }
+  ]
+}
