@@ -1,46 +1,10 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "demo",
-      "location": "San Antonio, Texas",
-      "favoriteColor": "red"
-    },
-    {
-      "name": "anotha Person",
-      "location": "Baltimore, MD",
-      "favoriteColor": "red",
-      "id": 2
-    },
-    {
-      "name": "",
-      "location": "",
-      "favoriteColor": "",
-      "id": 3
-    },
-    {
-      "name": "",
-      "location": "",
-      "favoriteColor": "",
-      "id": 4
-    },
-    {
       "name": "Yael",
       "location": "Austin, TX",
       "favoriteColor": "Crimson Red",
       "id": 5
-    },
-    {
-      "name": "Yael",
-      "location": "Austin, TX",
-      "favoriteColor": "Crimson Reddddd",
-      "id": 6
-    },
-    {
-      "name": "Yael",
-      "location": "Austin, TX",
-      "favoriteColor": "Green",
-      "id": 7
     },
     {
       "name": "Yael",
@@ -59,18 +23,6 @@
       "location": "ginger, bd",
       "favoriteColor": "brown",
       "id": 10
-    },
-    {
-      "name": "asdf",
-      "location": "ffds",
-      "favoriteColor": "asdfffad",
-      "id": 11
-    },
-    {
-      "name": "eeeeee",
-      "location": "eee",
-      "favoriteColor": "eee",
-      "id": 12
     }
   ]
 }
