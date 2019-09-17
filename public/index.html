@@ -6,29 +6,94 @@
   <body>
     <h1>Backend testing for project</h1>
     <h3>Print information from json-server database</h3>
+    <input type="text" id="name" placeholder="name">
+    <input type="text" id="loc" placeholder="location">
+    <input type="text" id="color" placeholder="color">
+    <button type="button" id="addBtn">Add</button>
+
     <div id="showDB"></div>
+
+
+
     <script>
-    console.log("app.js is loaded");
+      "use strict";
 
-    // Verbose Console logs.
-    let verbose = true;
+      console.log("app.js is loaded");
 
-    // Declare variables for DOM elements
-    const showDB = document.getElementById("showDB");
+      // Verbose Console logs.
+      let verbose = true;
 
-    // Fetch data from local json db store to variable
-    let payload = "";
+      // Declare variables for DOM elements
+      const showDB = document.getElementById("showDB");
 
-    fetch('../api/users')
-      .then(response => response.json())
-      .then(json => {
-        (verbose) ? console.log(json): "";
-        payload = json;
-      })
-      // display db info to page.
-      .then(() => {
-        showDB.innerHTML = payload;
+      // Add users to db
+      const name = document.getElementById("name");
+      const locationDOM = document.getElementById("loc");
+      const color = document.getElementById("color");
+      const add = document.getElementById("addBtn");
+
+      let addUser = (nam = name.value, loca = locationDOM.value, colo = color.value) => {
+        (verbose) ? console.log("Adding User"): "";
+        if (nam == undefined || loca == undefined || colo == undefined) {
+          alert("Please check inputs for adding user");
+          return;
+        } else if (nam == "" || loca == "" || colo == "") {
+          alert("Please check inputs for adding user");
+          return;
+        } else {
+          const data = {name: nam, location: loca, favoriteColor: colo};
+          const url = 'http://localhost:3000/users'
+          const options = {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(data)
+          }
+          fetch(url, options)
+            .then(() => renderHTML())
+            .catch(() => (verbose) ? console.log("There was an error adding user"): "")
+            .then(() => (verbose) ? console.log("New User was added : " + nam + " " + loca + " " + colo): "");
+        }
+      }
+
+      // EventListener for ADD button
+      add.addEventListener("click", () => {
+        addUser(name.value, locationDOM.value, color.value);
       });
+
+      // Renders content to print to page
+      const renderHTML = () => {
+        (verbose) ? console.log("Rendering content to page") : "";
+
+        // Fetch data from local json db store to variable
+        let payload = "";
+        let html = "";
+
+        showDB.innerHTML = "";
+        showDB.innerHTML = html;
+
+        fetch('http://localhost:3000/users')
+          .then(response => response.json())
+          .then(json => {
+            (verbose) ? console.log(json): "";
+            payload = json;
+          })
+          // display db info to page.
+          .then(() => {
+            payload.map((e,i) => {
+              html += `<p>`;
+              html += `Name : ${payload[i].name}<br>`;
+              html += `Location : ${payload[i].location}<br>`;
+              html += `Favorite Color : ${payload[i].favoriteColor}`;
+              html += `</p>`;
+            })
+            showDB.innerHTML = html;
+          });
+      }
+
+      renderHTML();
+
     </script>
   </body>
 </html>
